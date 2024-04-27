@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX</title>
+</head>
+
+<body>
+
+
+  <button id="button">Get TXT FILE</button>
+  <script>
+
+
+    // create event listener
+    document.getElementById("button").addEventListener('click', loadText);
+
+    function loadText() {
+      console.log('button clicked');
+      // create XHR object
+
+      var xhr = new XMLHttpRequest();
+      // open function acepta 3 parametro : metodo de peticion (GET/POST), url del archivo a solicitar y si es asincrono o no
+
+      xhr.open('GET', 'sample.txt', true);
+
+      // xhr.onload = function () {
+      //   if (xhr.status == 200) {
+      //     console.log(xhr.responseText)
+      //   }
+      // }
+
+
+      console.log('READYSTATE:  ', xhr.readyState);
+
+
+      xhr.onreadystatechange = function () {
+        console.log('READYSTATE:  ', xhr.readyState);
+
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+        }
+      }
+
+      xhr.send();
+
+    }
+
+
+
+  </script>
+</body>
+
+</html>
