@@ -11,6 +11,8 @@
 
 
   <button id="button">Get TXT FILE</button>
+  <br><br>
+  <div id="text"></div>
   <script>
 
 
@@ -26,15 +28,32 @@
 
       xhr.open('GET', 'sample.txt', true);
 
+
+      // ONPROGRESS
+
+      // xhr.onprogress = function () {
+      //   console.log('READYSTATE:  ', xhr.readyState);
+      // }
+
+
+      // ONLOAD
+      // muestra  por pantalla lo que esta en el sample txt 
+      xhr.onload = function () {
+        if (xhr.status == 200) {
+          //console.log(xhr.responseText)
+          document.getElementById('text').innerHTML = this.responseText;
+        }
+      }
+
       // xhr.onload = function () {
-      //   if (xhr.status == 200) {
+      //console.log('READYSTATE:  ', xhr.readyState);
+      //   if (this.status == 200) {
       //     console.log(xhr.responseText)
       //   }
       // }
 
 
-      console.log('READYSTATE:  ', xhr.readyState);
-
+      // ONREADYSTAYCHANGE
 
       xhr.onreadystatechange = function () {
         console.log('READYSTATE:  ', xhr.readyState);
@@ -47,6 +66,7 @@
       xhr.send();
 
     }
+
 
 
 

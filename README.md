@@ -40,7 +40,19 @@ console.log(xhr);
 3: processing request
 4: req. finished and response is ready
 
+# ONERROR 
 
+permite lanzar errores
+
+# ONPROGRESS
+
+Este es el paso 3
+
+#JSON
+
+Para obtner informacion de nuestro JSON file 
+se hace a traves del metodo JSON.parse
+para recorrer un JSON file se utilizaran metodos como for in o for each 
 
 #ENGLISH 
 
