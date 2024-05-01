@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX and PHP</title>
+</head>
+
+<body>
+
+  <button id="button">Get Name</button>
+  <hr>
+  <h1>GET FORM</h1>
+  <!-- Send data with standard form
+   through the URL variable
+   the web page reloads -->
+  <form method="GET" action="process.php">
+    <input type="text" name="name">
+    <input type="submit" value="submit">
+
+  </form>
+  <!-- send data with form using AJAX,
+  e.preventDefault () prevents the default submit event from
+  happening (which would cause a page reload) -->
+
+  <h1>AJAX GET FORM</h1>
+  <form id="getForm">
+    <input type="text" name="name" id="name1">
+    <input type="submit" value="submit">
+  </form>
+
+  <script>
+
+    document.getElementById('button').addEventListener('click', getName);
+
+    document.getElementById('getForm').addEventListener('submit', getName);
+
+
+
+    function getName(e) {
+      e.preventDefault();
+      var name = document.getElementById('name1').value;
+      var xhr = new XMLHttpRequest();
+
+
+      // Enviar variables a php
+      xhr.open('GET', 'process.php?name=' + name, true);
+      xhr.onload = function () {
+        console.log(this.responseText);
+      }
+      xhr.send();
+    }
+
+
+
+    // function getName() {
+    //   let xhr = new XMLHttpRequest();
+
+    //   //xhr.open('GET', 'process.php', true);
+
+    //   // Enviar variables a php
+    //   xhr.open('GET', 'process.php?name =felix', true);
+
+
+    //   xhr.onload = function () {
+
+    //     console.log(this.responseText);
+    //   }
+    //   xhr.send();
+    // }
+  </script>
+</body>
+
+
+</html>
