@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX POST </title>
+</head>
+
+<body>
+
+  <!-- send data with form using AJAX,
+  e.preventDefault () prevents the default submit event from
+  happening (which would cause a page reload) -->
+
+  <h1>AJAX POST FORM</h1>
+  <form id="postForm">
+    <input type="text" name="name" id="name2">
+    <input type="submit" value="submit">
+  </form>
+
+
+  <script>
+
+    document.getElementById('postForm').addEventListener('submit', postName);
+
+    function postName(e) {
+      e.preventDefault();
+      var name = document.getElementById('name2').value;
+      var params = 'name= ' + name;
+      var xhr = new XMLHttpRequest();
+
+
+      // Enviar variables a php
+      xhr.open('POST', 'process2.php?name', true);
+      // to send a post request
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr.onload = function () {
+        console.log(this.responseText);
+      }
+      xhr.send(params);
+    }
+
+
+  </script>
+</body>
+
+</html>
