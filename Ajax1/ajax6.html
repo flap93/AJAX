@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX fetch data from DB</title>
+</head>
+
+<body>
+
+  <h1>AJAX fetch data DB</h1>
+
+  <button id="button">Get users</button>
+  <br>
+  <h1>users</h1>
+  <div id="users"></div>
+  <script>
+    document.getElementById('button').addEventListener('click', getUsersDB);
+    // get data from the DB
+
+
+    function getUsersDB() {
+      let xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'users.php', true);
+
+      xhr.onload = function () {
+        if (this.status == 200) {
+          var users = JSON.parse(this.responseText);
+
+          let output = '';
+
+          for (let i in users) {
+            output += '<ul>' +
+              '<li>ID: ' + users[i].id + '</li>' +
+              '<li>Name: ' + users[i].name + '</li></ul>';
+
+
+
+          }
+          document.getElementById("users").innerHTML = output;
+        }
+
+      }
+      xhr.send();
+
+    }
+
+
+  </script>
+</body>
+
+</html>
